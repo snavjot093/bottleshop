@@ -1,0 +1,13 @@
+@includes app/scss/styles.scss
+
+.cdk-overlay-container{
+    background: green;
+    .cdk-overlay-connected-position-bounding-box{
+        .cdk-overlay-pane, .mat-autocomplete-visible{
+          position: relative !important;
+          background: green;
+          border: 1px solid;
+        }
+    }
+
+}

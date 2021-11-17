@@ -1,0 +1,340 @@
+input, select, mat-select {
+    //background-color: $input-bg;
+    background: $black-10 !important;
+    outline: none;
+    border: 2px solid $input-border !important;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle, .radio {
+//    border-color: #ffd740;
+    border-color:$pr-theme-color;
+}
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: $pr-theme-color;;
+}
+
+.stbs-table{
+    width: 100%;
+    margin: 0 auto;
+    @include tablet-portrait{
+        width: 90%;
+    }
+    border: 1px solid $pr-theme-color;
+    word-break: break-word;
+    thead{
+        display:table;
+        width:100%;
+        table-layout:fixed;
+        tr{
+            th{
+                border:none;
+                border-right: 1px solid $pr-theme-color;
+                border-bottom: 1px solid $pr-theme-color;
+                vertical-align: middle;
+                text-align: center;
+                height:50px;
+                font-size: 15px;
+                color:$pr-theme-color;
+                background: lighten($pr-theme-color, 54%);
+                &:last-child{
+                    border-right: 0px solid $pr-theme-color;
+                }
+            }
+            th, td{
+                border-bottom-width: 1px;
+                a{
+                    color:$pr-theme-color;
+                }
+            }
+        }
+    }
+    tbody{
+        width:100%;
+        margin:0;
+        padding:0;
+        overflow-y: overlay;
+        display:block;
+        max-height: 420px;
+        tr{
+            display:table;
+            width:100%;
+            table-layout:fixed;
+            td{
+                border:none;
+                border-bottom: 1px solid $pr-theme-color;
+                border-right: 1px solid $pr-theme-color;
+                vertical-align: middle;
+                text-align: center;
+                font-weight:500;
+                font-size: 12px;
+                height:40px;
+                &:last-child{
+                    border-right: 0px solid $pr-theme-color;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+table.table{                                                                    //List.component & Reports
+    text-transform: capitalize;
+    margin-top: -1px;
+    margin-bottom: 0rem;//!important;
+    thead{
+        background: $white;
+        th{
+            vertical-align: middle;
+            border: 2px solid $input-border;// !important;
+            color:$pr-theme-color;
+            text-align: left;//!important;
+            padding: 12px 0 12px 12px;//!important;
+            background: $table-header;//!important;
+            font-size: $font-size-16;
+        }
+        th:first-child {
+            text-align: left;
+        }
+    }
+    tbody{
+        td{
+            vertical-align: middle;
+            border-color: $input-border;// !important;
+            text-align: left;//!important;
+            padding-left: 12px;// !important;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        td:first-child {
+            text-align: left;
+        }
+    }
+}
+table.report-table{
+    tr{
+        th{
+            padding: 0.25rem !important;
+        }
+        td{
+            padding: 0.25rem !important;
+            font-size: 13px;
+        }
+    }
+}
+.createOrder-table-search{
+    @extend .table;
+    width: 68%;
+    margin: 0 auto;
+}
+table.createOrder-table{
+    @extend .table;
+    width: 70%;
+    margin: 0 auto;
+
+    td{
+        padding: 5px 0 5px 12px;
+        font-size: 13px;
+        .mat-checkbox-layout{
+            color: $black-3;
+            font-size: 12px;
+            font-weight: 500;
+            .mat-checkbox-inner-container {
+                width: 15px;
+                height:15px;
+                margin-right: 3px;
+                z-index: -1;
+            }
+        }
+
+    }
+    td:first-child{
+        width: 20%;
+    }
+}
+
+
+
+
+
+
+
+
+//======================== CHECKBOX & RADIO STYLE =============================
+
+.my-checkbox {
+    display: inline-block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    margin-right: 20px;
+    cursor: pointer;
+    font-size: $font-size-base;//$font-13;
+    font-weight: $font-weight-normal;//$bold-4;
+    color: $black-5;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background: $black-10;
+        outline: none;
+        border: 1px solid $input-border;
+    }
+    .checkmark-checkbox{
+        @extend .checkmark;
+    }
+    .checkmark-radio {
+        @extend .checkmark;
+        border-radius: 50%;
+
+    }
+    .checkmark-radio-small{
+        @extend .checkmark-radio;
+        height: 15px;
+        width: 15px;
+        top: 3px;
+        left: 3px;
+    }
+
+    &:hover input ~ .checkmark {
+        background-color: $black-8;
+    }
+    input:checked ~ .checkmark {
+        background-color: $pr-theme-color;
+    }
+/* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+/* Show the checkmark when checked */
+    input:checked ~ .checkmark:after {
+        display: block;
+    }
+/* Style the checkmark/indicator */
+    .checkmark-checkbox:after {
+        left: 7px;
+        top: 3px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    .checkmark-radio:after {
+     	top: 5px;
+    	left: 5px;
+    	width: 8px;
+    	height: 8px;
+    	border-radius: 50%;
+    	background: white;
+    }
+        .checkmark-radio-small:after {
+            ///@extend .checkmark-radio:after;
+                top: 3px;
+                left: 3px;
+                width: 7px;
+                height: 7px;
+        }
+}
+/*========Bootstrap badge==============================================*/
+.badge.badge-pill{
+    padding: 3.5px 3px;
+    border-radius: 20px;
+    font-size: xx-small;
+}
+/*=========================Flashing text==============================*/
+
+.flash {
+   animation-name: flash;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+
+}
+
+@keyframes flash {
+    /*from {color: red;}
+    to {color: green;}*/
+    0%   {background-color: #481F79;color:#FFF;}
+    10%  {background-color: #0046A8;color:#FFF;}
+    20%  {background-color: #13620B;color:#FFF;}
+    30%  {background-color: #FBDB5F;color:#FFF;}
+    40%  {background-color: #F99D4D;color:#FFF;}
+    50%  {background-color: #D10161;color:#FFF;}
+    60%  {background-color: #17A858;color:#FFF;}
+    70%  {background-color: #0DB0DD;color:#FFF;}
+    80%  {background-color: #662371;color:#FFF;}
+    90%  {background-color: #E53729;color:#FFF;}
+    100% {background-color: #FB9946;color:#FFF;}
+}
+
+
+.dived-table{
+    width: 80%;
+    margin: 0 auto;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid $pr-theme-color;
+    .row.header{
+        border:none;
+        border-right: 1px solid $pr-theme-color;
+        border-bottom: 1px solid $pr-theme-color;
+        vertical-align: middle;
+        text-align: center;
+        height:50px;
+        font-size: 15px;
+        color:$pr-theme-color;
+        background: lighten($pr-theme-color, 54%);
+        &:last-child{
+            border-right: 0px solid $pr-theme-color;
+        }
+        div{
+            padding-top:13px;
+        }
+    }
+    div.row{
+        margin-left: 0;
+        margin-right: 0;
+        height: 35px;
+        div{
+            border-bottom: 1px solid $pr-theme-color;
+            border-right: 1px solid $pr-theme-color;
+        }
+
+       // border-top: none;
+        &:last-child{
+           //border-right: none;
+           border-bottom:none;
+        }
+    }
+
+}

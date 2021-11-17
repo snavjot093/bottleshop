@@ -1,0 +1,267 @@
+@use "sass:math";
+
+@mixin b-r($radius) {
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    
+}
+@mixin padding($pad) {
+    padding: $pad;
+    -webkit-padding: $pad;
+    -moz-padding: $pad;
+    -ms-padding: $pad;
+}
+@mixin bodyFont(){
+    font-size: $font-normal;  //12px !default;
+}
+
+@mixin baseFont(){
+    font-size: $base-font; //15px !default;
+}
+@mixin largeFont(){
+    font-size: $font-large;
+}
+
+@mixin crFont(){
+    font-family: "gotham-book", sans-serif;
+}
+@mixin lh($height){
+    line-height: $height;
+}
+@mixin pt($pad){
+    padding-top: $pad;
+    -webkit-padding-top: $pad;
+    -moz-padding-top: $pad;
+    -ms-padding-top: $pad;
+}
+@mixin pr($pad){
+    padding-right: $pad;
+    -webkit-padding-right: $pad;
+    -moz-padding-right: $pad;
+    -ms-padding-right: $pad;
+}
+@mixin pb($pad){
+    padding-bottom: $pad;
+    -webkit-padding-bottom: $pad;
+    -moz-padding-bottom: $pad;
+    -ms-padding-bottom: $pad;
+}
+@mixin pl($pad){
+    padding-left: $pad;
+    -webkit-padding-left: $pad;
+    -moz-padding-left: $pad;
+    -ms-padding-left: $pad;
+}
+@mixin mt($margin){
+    margin-top: $margin;
+}
+@mixin mr($margin){
+    margin-right: $margin;
+}
+@mixin mb($margin){
+    margin-bottom: $margin;
+}
+@mixin ml($margin){
+    margin-left: $margin;
+}
+@mixin margin($margin) {
+    margin: $margin;
+}
+@mixin allMargin($m1, $m2, $m3, $m4) {
+    margin: $m1 $m2 $m3 $m4;
+}
+@mixin allPadding($p1, $p2, $p3, $p4) {
+    padding: $p1 $p2 $p3 $p4;
+    -webkit-padding: $p1 $p2 $p3 $p4;
+    -moz-padding: $p1 $p2 $p3 $p4;
+    -ms-padding: $p1 $p2 $p3 $p4;
+}
+@mixin twoMargin($m1, $m2) {
+    margin: $m1 $m2;
+}
+@mixin twoPad($p1, $p2) {
+    padding: $p1 $p2;
+    -webkit-padding: $p1 $p2;
+    -moz-padding: $p1 $p2;
+    -ms-padding: $p1 $p2;
+}
+@mixin applyWidth($width) {
+    width: $width;
+}
+@mixin applyMinWidth($width) {
+    min-width: $width;
+}
+@mixin applyMaxWidth($width) {
+    max-width: $width;
+}
+@mixin applyHeight($height) {
+    height: $height;
+}
+@mixin linear-gradient($color1, $color2) {
+    background: $color1;
+    /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(90deg, $color1 , $color2);
+    /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(90deg, $color1, $color2);
+    /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(90deg, $color1, $color2);
+    /* For Firefox 3.6 to 15 */
+    background: linear-gradient(0deg, $color1 , $color2);
+    /* Standard syntax */
+}
+@mixin bShad($v1, $v2, $v3, $v4) {
+    box-shadow: $v1 $v2 $v3 $v4;
+    -moz-box-shadow: $v1 $v2 $v3 $v4;
+    -webkit-box-shadow: $v1 $v2 $v3 $v4;
+    -ms-box-shadow: $v1 $v2 $v3 $v4;
+}
+@mixin noBS() {
+    box-shadow: none;
+    -moz-box-shadow: none ;
+    -webkit-box-shadow: none;
+    -ms-box-shadow: none;
+}
+/*======================BUTTONS MIXINS============================*/
+@mixin button-bg($bg) {
+    background: $bg;
+    &:hover {
+        
+        background: darken($bg, 10%);
+        color: $white;
+        transition: all 0.3s ease;
+    }
+    &:active {
+        background: darken($bg,12%);
+    }
+}
+@mixin button-ok($bg){
+    border: 2px solid $clear;
+    background: $bg;
+    color:  $white;
+    &:focus,
+    &:hover {
+        background: darken($bg, 7.5%);
+        border: 2px solid darken($bg, 7.5%);
+    }
+}
+@mixin button-cancel($bg) {
+    border: 2px solid $bg;
+    background: $white;
+    color: $bg;
+    &:focus,
+    &:hover {
+        background: linear-gradient(to right, lighten($bg,90%),$bg);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: all 0.3s ease;
+    }
+    &:active {
+        background: linear-gradient(to right, lighten($bg,90%),$bg);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    &:visited:after {
+        background: linear-gradient(to right, lighten($bg,90%),$bg);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+@mixin placeholder {
+    &::-webkit-input-placeholder {@content}
+    &:-moz-placeholder           {@content}
+    &::-moz-placeholder          {@content}
+    &:-ms-input-placeholder      {@content}  
+}
+
+@mixin phone-only {
+  @media (max-width: 767px) { @content; }
+}
+@mixin tablet-portrait {
+  @media (min-width: 768px) { @content; }
+}
+@mixin tablet-landscape {
+  @media (min-width: 1024px) { @content; }
+}
+@mixin desktop {
+  @media (min-width: 1200px) { @content; }
+}
+@mixin big-desktop {
+  @media (min-width: 1800px) { @content; }
+}
+/*
+@mixin phone-only {
+  @media (max-width: 599px) { @content; }
+}
+@mixin tablet-portrait {
+    @media screen and (min-width: 600px) and (max-width: 767px){ @content; }
+}
+@mixin tablet-landscape {
+    @media screen and (min-width: 768px) and (max-width: 1023px){ @content; }
+}
+@mixin desktop {
+    @media screen and (min-width: 1024px) and (max-width: 1200px) { @content; }
+}
+@mixin big-desktop {
+  @media (min-width: 1201px) { @content; }
+}*/
+@mixin theme-colors($theme-it) {
+  @if $theme-it {
+    background-color: lighten(red, 5%);
+    color: red;
+  } @else {
+    background-color: darken($kp-blue, 5%);
+    color:darken($kp-blue, 15%);
+  }
+}
+@mixin badge($size, $filled, $cursor) {
+    width: $size;
+    height: $size;
+    line-height: $size;
+    font-size: $size / 2;
+    border-radius: $size / 2;
+    border: 1px solid $kp-blue;
+    text-align: center;
+    cursor:$cursor;
+    @if $filled {
+        background: $kp-blue;
+        color:$white;
+    }@else{
+        background: $white;
+        color:$kp-blue;
+    }
+}
+@mixin linear-gradient($color1, $color2){
+    background: $color1; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(90deg, $color1 , $color2); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(90deg, $color1, $color2); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(90deg, $color1, $color2); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(0deg, $color1 , $color2); /* Standard syntax */
+}
+@mixin form-control-placeholder($color, $opacity){
+   .form-control::-moz-placeholder{
+       color: $color;
+       @include opacity(1);
+   }
+   .form-control:-moz-placeholder{
+       color: $color;
+       @include opacity(1);
+   }
+   .form-control::-webkit-input-placeholder{
+       color: $color;
+       @include opacity(1);
+   }
+   .form-control:-ms-input-placeholder{
+       color: $color;
+       @include opacity(1);
+   }
+}
+
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  // IE8 filter
+  $opacity-ie: ($opacity * 100);
+  filter: #{alpha(opacity=$opacity-ie)};
+}

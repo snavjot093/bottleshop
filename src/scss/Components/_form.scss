@@ -1,0 +1,181 @@
+form{
+    input[type=submit],
+    input[type=text]{
+        height: 45px;
+    }
+}
+form.searchBy{
+    input[type=text]{
+      width: 80%;
+    }
+    input[type=submit].sb-liqName{
+        width:20%;
+        color:$black-1 !important;
+        border-left:none;
+        &:hover{
+            background: $pr-theme-color!important;
+            color:$white !important;
+        }
+        &:active{
+            height: 40px;
+        }
+    }
+    @include tablet-landscape{
+        input[type=text]{
+          width: 85%;
+        }
+        input[type=submit].sb-liqName{
+            width:15%;
+      }
+    }
+}
+.jumbotron{
+    padding: 1rem 1rem 0rem 1rem;
+    margin-bottom: 0;
+    @include tablet-landscape{
+        padding: 2rem 1rem 2rem 1rem;
+        margin-bottom: 20px;
+    }
+}
+.marquee-div{
+    display: none;
+    @include tablet-landscape{
+        display: block;
+    }
+}
+.searchTerm{
+    margin:0px 15px;
+    width: calc(100% - 30px);
+    @include tablet-landscape{
+        margin-top:0px;
+        margin-right:0px;
+        margin-bottom:5px;
+        margin-left:0px;
+        float:right;
+    }
+}
+.searchBy-radio{
+    display: inline-flex;
+    margin-bottom: 20px;
+    @include tablet-landscape{
+        margin-bottom: 0px;
+    }
+}
+.no-phone{
+    display: none;
+    @include tablet-landscape{
+      display: block;
+    }
+}
+.no-computer{
+    display: block;
+    @include tablet-landscape{
+        display: none;
+    }
+}
+
+
+/*===========================RADIO ===========================================*/
+.radio-container {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  /* Hide the browser's default radio button */
+  .radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /* Create a custom radio button */
+  .checkmark {
+    position: absolute;
+    top: -4px;
+    left: 0;
+    height: 23px;
+    width: 23px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 2px solid $pr-theme-color;
+  }
+
+  /* On mouse-over, add a grey background color */
+  .radio-container:hover input ~ .checkmark {
+    background-color: #fff;
+  }
+
+  /* When the radio button is checked, add a blue background */
+  .radio-container input:checked ~ .checkmark {
+    background-color: #fff;
+  }
+
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  /* Show the indicator (dot/circle) when checked */
+  .radio-container input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  /* Style the indicator (dot/circle) */
+  .radio-container .checkmark:after {
+    top: 4px;
+    left: 4px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: $pr-theme-color;
+  }
+
+  /*====================END OF RADIO & CHECK BOX=================================*/
+.auto-grid {
+    --auto-grid-min-size: 14rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+    grid-gap: 1rem;
+    .grid-col {
+        padding:1.4rem 0px;
+        font-size: 1rem;
+        background: #34495E;/*#eb4d4b;*/
+        color: #ffffff;
+        div{
+            text-align: left;
+            font-size: 1rem;
+            text-indent: 25px;
+            &:first-child{
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
+table.stbs-table{
+    thead{
+        tr{
+            th.liqNameClass{
+                width: 250px;
+                max-width: auto;
+                text-align: left;
+                text-indent: 20px;
+            }
+        }
+    }
+    tbody{
+         tr{
+            td.liqNameClass{
+                width: 250px;
+                max-width: auto;
+                text-align: left;
+                text-indent: 20px;
+            }
+         }
+    }
+}

@@ -1,0 +1,265 @@
+@mixin button-bg($bg) {
+  background: $bg;
+  color: $white;
+
+  &:hover {
+    background: darken($bg,8%);
+    color: $white;
+    transition: all 0.3s ease;
+  }
+
+  &:active {
+    background: darken($bg,12%);
+    @include media-breakpoint-up(md) {
+       min-width: 80px;
+       margin-left: 15px;
+   }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: #DDD;
+
+    &:hover {
+      background: $black-7;
+    }
+  }
+}
+@mixin button-cancel($bg) {
+  background: $white;
+  border: 1px solid $bg;
+  color: $bg;
+
+  &:focus,
+  &:hover {
+    background: linear-gradient(to right, #ffe6ff,#710e32);
+    background: linear-gradient(to right, #ffe6ff,#710e32);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &:active {
+     @include media-breakpoint-up(md) {
+        min-width: 80px;
+        margin-left: 15px;
+    }
+  }
+
+  &:visited:after {
+    background: linear-gradient(to right, #ffe6ff,#710e32);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    //color: darken($bg, 12%);
+  }
+}
+
+.myBtn {
+  text-decoration: none;
+  text-shadow: none;
+  border: none;
+  @include allMargin(1%, 2%, 0%, 2%);
+  @include media-breakpoint-up(xs) {
+    min-width: 96%;
+    padding: 5px;
+    @include border-radius(4px);
+    display: block;
+  }
+  @include media-breakpoint-up(md) {
+    font-size: $font-size-normal;
+    @include padding(6px);
+    min-width: 100px;
+    @include border-radius(3px);
+  }
+}
+
+.btn-sml {
+  min-width: 80px !important;
+  padding: 0 8px!important !important;
+}
+
+.btn-md {
+  min-width: 120px !important;
+}
+
+.btn-lg {
+  min-width: 150px !important;
+  padding: 8px 10px 8px 10px !important;
+}
+
+.btn-pr {
+  @include button-bg($pr-theme-color);
+}
+
+.btn-cr {
+  @include button-bg($cr-theme-color);
+}
+
+.btn-invoice-search {
+  @extend .myBtn;
+  @extend .btn-md;
+  @include button-bg($deep-sky-blue);
+}
+
+.btn-cancel-pr {
+  @include button-cancel($pr-theme-color);
+}
+
+.btn-cancel-cr {
+  @include button-cancel($cr-theme-color);
+}
+
+.btn-grouping {
+  //margin: 20px 35px 20px 0px;
+  @include media-breakpoint-up(md) {
+    float: right;
+    display: flex;
+    min-width: 250px;
+  }
+  @include media-breakpoint-up(xs) {
+    margin: 20px auto;
+  }
+
+  .myBtn {
+    @extend .myBtn;
+    @include media-breakpoint-up(xs) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .btn-cancel-pr {
+    @extend .btn-cancel-pr;
+  }
+
+  .btn-cancel-cr {
+    @extend .btn-cancel-cr;
+  }
+}
+
+::after {
+  float: none;
+  clear: both;
+}
+
+.btn-default.text-center {
+  //used on add/edit form page
+  background: $pr-theme-color;
+  background-image: $pr-theme-color;
+  border: 1px solid $white;
+  color: $white;
+  font-weight: $font-weight-light;
+  font-size: $font-size-normal;
+
+  &:hover {
+    background: $pr-theme-color;
+    color: $white;
+    font-weight: $font-weight-light;
+    font-size: $font-size-normal;
+  }
+
+  &:active {
+    background: darken($pr-theme-color, 25%);
+    color: $white;
+  }
+
+  &:active:after {
+    background: darken($pr-theme-color, 50%);
+    color: $white;
+  }
+}
+
+.round-plus {
+  background-color: #1997b5;
+  color: #FFF;
+  font-size: 20px;
+  padding: 0 7px;
+  border-radius: 20px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 3px 4px 8px #aaa;
+}
+
+.edit-liquor {
+  font-size: 20px;
+  color: green;
+  cursor: pointer;
+}
+/*==============================MAT OVERRIDE===================================*/
+.mat-button-toggle-label-content {
+  padding: 2px 16px !important;
+  border: 1px solid;
+  border-radius: 2px;
+}
+
+.mat-button-toggle-checked {
+  background-color: $pr-theme-color;
+  color: $white;
+}
+
+.mat-radio-button {
+  vertical-align: sub;
+}
+
+.mat-datepicker-toggle-default-icon {
+  color: $pr-theme-color;
+}
+
+.search-invoice {
+  background-color: $pr-theme-color;
+  color: $white;
+  cursor: pointer;
+
+  &:hover {
+    background: darken($pr-theme-color, 5%);
+    color: $white;
+  }
+
+  &:active {
+    background: darken($pr-theme-color, 15%);
+    color: $white;
+  }
+
+  &:active:after {
+    background: darken($pr-theme-color, 20%);
+    color: $white;
+  }
+}
+/*=============================BALLS JUST INCASE IF I NEED TO CREATE IN THE PORJECT AGAIN TO SHOW HOW YOU FEELING ================================*/
+.ball {
+  width: 14px;
+  height: 14px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.red-ball {
+  @extend .ball;
+  background: $red;
+}
+
+.green-ball {
+  @extend .ball;
+  background: $green-text; //#28ab8e;
+}
+
+.yellow-ball {
+  @extend .ball;
+  background: $yellow-mustard;
+}
+
+.yellowGreen-ball {
+  @extend .ball;
+  background: -moz-linear-gradient(left, $yellow-mustard 0%, $green-text 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,$yellow-mustard), color-stop(50%,$yellow-mustard), color-stop(50%,$green-text), color-stop(100%,$green-text));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, $yellow-mustard 0%,$yellow-mustard 50%, $green-text 50%,$green-text 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: linear-gradient(to right, $yellow-mustard 0%,$yellow-mustard 50%, $green-text 50%,$green-text 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = $yellow-mustard, endColorstr = $green-text,GradientType=1);
+  /* IE6-9 */
+}
+
+.slide-button {
+  position: absolute;
+}
+/*=========================================================================*/

@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-sm-6 col-md-3 col-lg-2 ">
+                <button type="button" class="myBtn btn-cancel-pr" (click)="showAndHideTabs('reportByLiquorName')">By Liquor Name</button><br class="mobile-only"/>
+            </div>
+            <div class="col-sm-6 col-md-3 col-lg-2 ">
+                <button type="button" class="myBtn btn-cancel-pr" (click)="filterInvoiceNum(responseData, 'invoiceNum')">Invoices Search</button>
+            </div>
+            <div class="col-sm-0 col-md-6 col-lg-8"></div>
+        </div>
+        <br/>
+        <form [formGroup]='reportSearchForm' (ngSubmit)='searchLiquorReport(reportSearchForm.value)' class="searchBy">
+            <div class="row">
+                <div class="col-lg-6">
+                    <label for="liqNameReport"> Buying report of Liquor</label>
+                    <input type="text"  class="" id="liqNameReport" matInput [formControl]="reportSearchForm.controls['liqName']" [matAutocomplete]="auto1" placeholder="Liquor Name"required >
+                    <input type="submit" class="sb-liqName" value="Submit" />
+                    <mat-autocomplete #auto1="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredOptionReport | async" [value]="option">{{option}}</mat-option>
+                    </mat-autocomplete>
+                </div>
+                <div class="col-lg-6"></div>
+            </div>
+        </form>
+        <div class="row" [hidden]="searchedResponse === null">
+            <div class="col-md-12">
+                <h6>Priced report of the {{liquorName}}</h6>
+            </div>
+        </div><br/>
+        <div class="searchBy-radio form-check" *ngFor="let obj of liqSizeForRadio" name="" [hidden]="searchedResponse === null">
+            <label class="radio-container" >
+                <input type="radio" checked="checked" name="LiqSizeRadio" [(ngModel)]="myRadioPick" value="{{obj}}" (change)="radioChecked(obj)" >
+                <span class="checkmark"></span>{{obj}}
+            </label>
+        </div>
+        <br/>
+    </div>
+    <div class="row" >
+        <div class="col-md-3">
+            <marquee BEHAVIOR="ALTERNATE" class="marquee-style">
+                <div class="flash count marquee-div" [hidden]="totalEntries === null"><span class="totalCount">{{totalEntries}}</span></div>
+            </marquee>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-5" style="text-align:center">
+            <input type="text" class="form-control searchTerm" [(ngModel)]="searchTerm" placeholder="Search text goes here" style=""/>
+        </div>
+    </div>
+    <div class="no-computer">
+        <div class="auto-grid">
+          <div class="grid-col" *ngFor="let liq of responseData |filter:searchTerm">
+              <div>{{liq.liqName}}</div>
+              <div>Size: {{liq.liqSize }}</div>
+              <div>Buying Price: ${{liq.price}}</div>
+              <div>Selling Price: ${{liq.sellPrice }}</div>
+              <div>Percentage: {{(1 - (liq.price/liq.sellPrice))*100 }} </div>
+              <div>Purchase Date: {{liq.invoiceDate | date: 'MMM-dd-yy'}}</div>
+              <div>Quantity: {{liq.quantity }}</div>
+
+          </div>
+        </div>
+    </div>
+</div>
+<table class="stbs-table no-phone">
+    <thead>
+        <tr>
+            <th>InvoiceDate</th>
+            <th class="desktop-only liqNameClass">Liquor Name</th>
+            <th>Price</th>
+            <th>SellPrice</th>
+            <th class="desktop-only">InvoiceNum</th>
+            <th>Liquor Size</th>
+            <th class="desktop-only">Liquor Type</th>
+            <th>Quantity</th>
+            <th>SalesPerson</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let liq of responseData |filter:searchTerm">
+            <td>{{liq.invoiceDate | date: 'MMM-dd-yy'}}</td>
+            <td class="desktop-only liqNameClass">{{liq.liqName }}</td>
+            <td>{{liq.price}}</td>
+            <td>{{liq.sellPrice }}</td>
+            <td class="desktop-only">{{liq.invoiceNum }}</td>
+            <td>{{liq.liqSize }}</td>
+            <td class="desktop-only">{{liq.liqType }}</td>
+            <td>{{liq.quantity }}</td>
+            <td>{{liq.salesPerson }}</td>
+            <td><span class="edit-liquor" (click) = 'editEntry(liq)' aria-label="Close">&#x0270E;</span></td>
+        </tr>
+    </tbody>
+</table>
+<br/>
+<br/><br/><br/><br/>

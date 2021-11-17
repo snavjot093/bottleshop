@@ -1,0 +1,159 @@
+$white: #FFFFFF;
+
+$mycolor :#000000;
+$black-1: lighten($mycolor,20%);     // $black-dark: #2D3138;
+$black-2: lighten($mycolor,30%);     //$black-light: #454e5e;
+$black-3: lighten($mycolor,40%);     //$grey-dark  : #666666;    //$labels-color : #666666;
+$black-4: lighten($mycolor,50%);
+$black-5: lighten($mycolor,60%);      //$grey-medium : #A9A9A9; $grey-medium-dark   : #A3A3A3;
+$black-6: lighten($mycolor,70%);        //$grey-light  : #b0b0b0;
+$black-7: lighten($mycolor,80%);
+$black-8: lighten($mycolor,90%);
+$black-9: lighten($mycolor,92%);         //$grey-very-light : #F0F0F0;
+$black-10: lighten($mycolor,97%);
+
+$bodyBg:#f9f9f9;
+
+
+
+
+
+
+$pr-theme-color : #0db3d0;
+//$pr-theme-color : #57A635;
+//$pr-theme-color : #066564;
+//$pr-theme-color : #BB1654;
+//$pr-theme-color : #D1480C;
+//$pr-theme-color : #583985;
+//$pr-theme-color : #003B71;
+//$pr-theme-color : #B63125;
+
+$cr-theme-color : #1F7DDA;
+//================TABLE HEADERS AS PER THEME COLOR=========
+$panel-border: lighten($pr-theme-color,35%);
+$heading-bg1: lighten($pr-theme-color,55%);
+$heading-bg2: lighten($pr-theme-color,45%);
+$table-border: lighten($pr-theme-color,35%);
+//$inpu: lighten($pr-theme-color,38%);
+$tooltip-bg: darken($pr-theme-color, 27%);
+
+//================BORDERS & LINE AS PER THEME COLOR=========
+$line  : lighten($pr-theme-color,35%);
+$input-border: lighten($pr-theme-color,36%);
+$border: lighten($pr-theme-color,38%);
+$table-header: lighten($pr-theme-color,52%);//#f0fcfe
+//=============SHADES OF THE THEME=============
+
+
+$red    : #E73636;
+$red-alert: #FF4081;
+$red-delete : #A94442;
+$red-text: #F2DEDE;
+
+$info-alert :#d9edf7;   // NAVJOT NEED TO CHANGE THE PNAME CLASS COLOR AS PER THEME.
+$info-alert-text:#31708f;
+$yellow-mustard : #EAC117;
+$green-text : #22ab22;
+$deep-sky-blue: #00bfff;
+
+
+.box{
+    width: 300px;
+    height: 235px;
+    background : $tooltip-bg;
+    color:$black-8;
+    font-size: 17px;
+    font-weight: 200;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@mixin theme-shade($bg) {
+  background: $bg;
+  &:hover {
+    background:darken($bg,8%);
+    color: $white;
+    transition: all 0.3s ease;
+  }
+  &:active {
+    background:darken($bg,12%);
+  }
+}
+
+
+
+//==============RED========
+$red-light:#ff7f7f;
+
+
+$footer-bg:#e8f0f0;
+
+//$blue :#0b7fe3;
+//$blue-medium: #0d8efd;
+//========GREY COLOR==========
+$grey-dark  : #666666;
+$grey-medium-dark   : #A3A3A3;
+//$grey-light  : #b0b0b0;
+$grey-very-light : #F0F0F0;
+$grey-text : #d4d8e1;
+$grey-line :#CCCCCC;
+$title-grey :#EEEEEE;
+//$appt-grey: #f4f5f7;
+
+
+
+$white  : #FFFFFF;
+$yellow : #FFFF00;
+
+$orange : #FFA500;
+
+
+
+
+$green-dark  : #008000;
+$green-medium: #3c763d;
+$green-light : #abd387;
+
+
+
+//$tooltip-bg:#4A4F6B;
+//=================COLOR ASSIGNMENT============
+$input-bg : #F0F4F7;
+//$input-bg :$black-9;
+$input-color : $grey-dark;
+/*================================COPIED FROM OTHERS============================*/
+$orange-bg:                  #e95e38 !default;
+$black-color:                #2c2c2c !default;
+$white-color:                #FFFFFF !default;
+$white-bg:                   #FFFFFF !default;
+$default-color:              #888 !default;
+$default-states-color:       lighten($default-color, 6%) !default;
+$default-color-opacity:      rgba(182, 182, 182, .6) !default;
+$transparent-bg:             transparent !default;
+$dark-background:            #555555 !default;
+$danger-color:               #FF3636 !default;
+$danger-states-color:        lighten($danger-color, 6%) !default;
+$danger-color-opacity:       rgba(255, 54, 54, .3) !default;
+$danger-color-alert:         rgba(255, 54, 54, .8) !default;
+
+
+$primary-color:              #f96332 !default;   // BerkeleyBlue #003262 !default;
+$primary-states-color:       lighten($primary-color, 6%) !default;
+$primary-color-opacity:      rgba(249, 99, 50, .3) !default;
+$primary-color-alert:        rgba(249, 99, 50, .8) !default;
+$brand-primary:              $primary-color !default;
+
+$opacity-1:                  rgba(255,255,255, .1) !default;
+$opacity-2:                  rgba(255,255,255, .2) !default;
+$opacity-5:                  rgba(255,255,255, .5) !default;
+$opacity-8:                  rgba(255,255,255, .8) !default;

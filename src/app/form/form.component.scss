@@ -1,0 +1,12 @@
+@includes app/scss/styles.scss
+
+.cdk-overlay-container{
+    .cdk-overlay-connected-position-bounding-box{
+        .cdk-overlay-pane{
+          position: relative !important;
+          background: #fff;
+          border: 1px solid;
+        }
+    }
+
+}

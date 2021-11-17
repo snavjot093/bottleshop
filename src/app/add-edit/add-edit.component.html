@@ -1,0 +1,108 @@
+<div class="form-container">
+    <div style="text-align:center">
+        <h3>Add and Edit Form</h3>
+        <div class="btn-group row" style="width:65%; margin:0 auto;">
+            <button type="button" class="col-md-4 btn btn-default text-center" (click)="formSelection('inventroy')">Inventroy</button>
+            <button type="button" class="col-md-4 btn btn-default text-center" (click)="formSelection('invoiceRecord')">Invoice Record</button>
+            <button type="button" class="col-md-4 btn btn-default text-center" (click)="formSelection('everyThing')">Inventroy & Invoice Record</button>
+        </div>
+    </div>
+
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+        <div class="row form-group">
+            <div class="col-sm-6">
+                <label for="invoicedate">Invoice Date</label>
+                <input type=date placeholder="Choose a date"  class="form-control" id="invoicedate" formControlName="invoiceDate" required>
+            </div>
+            <div class="col-sm-6">
+                <label for="invoiceNum">Invoice Num</label>
+                <input type="text" class="form-control" id="invoiceNum" formControlName="invoiceNum" required >
+            </div>
+        </div>
+        <div class="row form-group" [hidden]="inventroyForm">
+            <div class="col-sm-6" [hidden]="inventroyForm">
+                <label for="liqName">Liquor Name</label>
+                <input type="text"  class="form-control" id="liqName" matInput formControlName="liqName" [matAutocomplete]="auto" required >
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredLiquorName | async" [value]="option">{{option}}</mat-option>
+                </mat-autocomplete>
+            </div>
+            <div class="col-sm-6" [hidden]="inventroyForm">
+                <label for="liqType">Liquor Type</label>
+                <input type="text"  class="form-control" id="liqType" matInput formControlName="liqType" [matAutocomplete]="auto1" required >
+                <mat-autocomplete #auto1="matAutocomplete">
+                    <mat-option *ngFor="let type of filteredOptionsType | async" [value]="type">{{type}}</mat-option>
+                </mat-autocomplete>
+            </div>
+        </div>
+        <div class="row" [hidden]="inventroyForm">
+            <div class="col-sm-6" [hidden]="inventroyForm">
+                <label for="liqSize">Liquor Size</label>
+                <input type="text"  class="form-control" id="liqSize" matInput formControlName="liqSize" [matAutocomplete]="auto2" required >
+                <mat-autocomplete #auto2="matAutocomplete">
+                    <mat-option *ngFor="let size of liquorSizeData | async" [value]="size">{{size}}</mat-option>
+                </mat-autocomplete>
+            </div>
+            <div class="col-sm-6" [hidden]="inventroyForm">
+                <label for="salesPerson">Sales Person</label>
+                <input type="text"  class="form-control" id="salesPerson" matInput formControlName="salesPerson" [matAutocomplete]="auto3" required >
+                <mat-autocomplete #auto3="matAutocomplete">
+                    <mat-option *ngFor="let sname of salesPersonData | async" [value]="sname">{{sname}}</mat-option>
+                </mat-autocomplete>
+            </div>
+        </div>
+        <div class="row" [hidden]="inventroyForm">
+            <div class="col-sm-6" [hidden]="inventroyForm">
+                <label for="price">Price</label>
+                <input type="text" class="form-control" id="price" formControlName="price" required trim>
+            </div>
+            <div class="col-sm-6" [hidden]="inventroyForm">
+                <label for="sellPrice">Selling Price</label>
+                <input type="text" class="form-control" id="sellPrice" formControlName="sellPrice" required trim>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6" [hidden]="inventroyForm">
+                <label for="quantity">Quantity</label>
+                <input type="text" class="form-control" id="quantity" formControlName="quantity" required >
+            </div>
+            <div class="col-sm-6" [hidden]="invoiceRecordForm">
+                <label for="amount">Amount</label>
+                <input type="text" class="form-control" id="amount" formControlName="amount" trim>
+            </div>
+        </div>
+        <div class="row" [hidden]="invoiceRecordForm">
+            <div class="col-sm-6" [hidden]="invoiceRecordForm">
+                <label for="dueDate">Due-Date</label>
+                <input type="date" placeholder="Choose a date"  class="form-control" id="dueDate" formControlName="dueDate">
+            </div>
+            <div class="col-sm-6" [hidden]="invoiceRecordForm">
+                <label for="paymentDate">Payment Date</label>
+                <input type="date" placeholder="Choose a date"  class="form-control" id="paymentDate" formControlName="paymentDate"/>
+            </div>
+        </div>
+        <div class="row" [hidden]="invoiceRecordForm">
+            <div class="col-sm-6" [hidden]="invoiceRecordForm">
+                <label for="company">Company</label>
+                <input type="text"  class="form-control" id="company" matInput formControlName="company" [matAutocomplete]="auto4" >
+                <mat-autocomplete #auto4="matAutocomplete">
+                    <mat-option *ngFor="let cname of companyData | async" [value]="cname">{{cname}}</mat-option>
+                </mat-autocomplete>
+            </div>
+            <div class="col-sm-6" [hidden]="invoiceRecordForm">
+                <label for="paidWith">Check No:</label>
+                <input type="text" class="form-control" id="paidWith" formControlName="paidWith" trim >
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="btn-grouping" style="margin-bottom: 0">
+                    <button type="button" class="myBtn btn-cancel-pr" id="myBtn" (click)="cancelForm(myForm.value)">Cancel</button>
+                    <!--button type="submit" class="myBtn btn-pr" [disabled]="!myForm.valid">Submit</button-->
+                    <button type="submit" class="myBtn btn-pr"  >Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!--pre >{{jsonCode }}</pre-->
+</div>

@@ -1,0 +1,15 @@
+.container{
+    @include phone-only{
+        max-width: 100%;
+    }
+    @include tablet-portrait{
+        .jumbotron{
+            @include padding(2rem );
+            
+        }
+    }
+    label{
+        display: block;
+    }
+    
+}

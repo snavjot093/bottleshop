@@ -1,0 +1,88 @@
+.desktop-only{
+    @include media-breakpoint-up(xs) {
+        display: none;
+    }
+    @include media-breakpoint-up(sm) {
+        display: none;
+    }
+    @include media-breakpoint-up(md) {
+        display: none;
+    }
+    @include media-breakpoint-up(lg) {
+        display: table-cell;
+    }
+    @include media-breakpoint-up(xl) {
+        display: table-cell;
+    }
+}
+.tablet-only{
+    @include media-breakpoint-up(xs) {                  // 575px and up
+        display: none;
+    }
+    @include media-breakpoint-up(sm) {                  // Small devices (landscape phones, 576px and up)
+        display: none;
+    }
+    @include media-breakpoint-up(md) {                  // Medium devices (tablets, 768px and up)
+        display: table-cell;
+    }
+    @include media-breakpoint-up(lg) {                  // Large devices (desktops, 992px and up)
+        display: none;
+    }
+    @include media-breakpoint-up(xl) {                  // Extra large devices (large desktops, 1200px and up)
+        display: none;
+    }
+}
+.mobile-only{
+    @include media-breakpoint-up(xs) {                  // 575px and up
+        display: table-cell;
+    }
+    @include media-breakpoint-up(sm) {                  // Small devices (landscape phones, 576px and up)
+        display: table-cell;
+    }
+    @include media-breakpoint-up(md) {                  // Medium devices (tablets, 768px and up)
+        display: none;
+    }
+    @include media-breakpoint-up(lg) {                  // Large devices (desktops, 992px and up)
+        display: none;
+    }
+    @include media-breakpoint-up(xl) {                  // Extra large devices (large desktops, 1200px and up)
+        display: none;
+    }
+}
+.nbar-hide-large.nbar-hide-medium{
+    @include media-breakpoint-up(md) {                  // Medium devices (tablets, 768px and up)
+        display: none;
+    }
+    @include media-breakpoint-up(lg) {                  // Large devices (desktops, 992px and up)
+        display: none;
+    }
+    @include media-breakpoint-up(xl) {                  // Extra large devices (large desktops, 1200px and up)
+        display: none;
+    }
+
+}
+.nbar-hide-small{
+    @extend .desktop-only;
+    @include media-breakpoint-up(md) {
+        display: block;
+    }
+}
+/*
+@media screen and (min-width: 768px) and (max-width: 1024px){}
+@media screen and (min-width: 1024px) and (max-width: 1200px){
+    $bodyBg: #ffe5f2;
+    .liq-table{width:90%;}
+}
+@media screen and (min-width: 1200px) {
+    $bodyBg:#f9f9f9;//rgb(255, 255, 255);
+   .liq-table{width:80%;}
+}
+
+@media screen and (max-width: 517px) {
+    $bodyBg: aliceblue;
+    .liq-table{width:100%;}
+}
+
+@media screen and (min-width: 1200px) {
+}
+*/

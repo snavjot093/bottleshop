@@ -1,0 +1,87 @@
+
+
+<form [formGroup]="searchInventory" (ngSubmit)="searchNow(searchInventory)" class="jumbotron row ">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-3">
+        <label for="invoiceNum">Invoice Num</label>
+        <input type="text" class="form-control" id="invoiceNum" formControlName="invoiceNum">
+    </div>
+    <div class="col-sm-3">
+        <label for="startDate">Start Date</label>
+        <input type="date" placeholder="Choose a date"  class="form-control" id="startDate" formControlName="startDate">
+    </div>
+    <div class="col-sm-3">
+        <label for="endDate">End Date</label>
+        <input type="date" placeholder="Choose a date"  class="form-control" id="endDate" formControlName="endDate">
+    </div>
+    <div class="col-sm-2">
+        <label for="">&nbsp;</label>
+        <button type="submit" class="myBtn btn-pr" >Submit</button>
+    </div>
+</form>
+
+<br/>
+<div class="row">
+    <div class="col-md-2">
+        <marquee BEHAVIOR="ALTERNATE" class="marquee-style">
+            <div class="flash count" [hidden]="totalEntries === null"><span class="totalCount">{{totalEntries}}</span></div>
+        </marquee>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-5" style="text-align:center">
+        <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search text goes here" style="float:right;margin-bottom:5px;"/>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<div class="no-computer">
+    <div class="auto-grid">
+      <div class="grid-col" *ngFor="let liq of responseData |filter:searchTerm">
+          <div>{{liq.liqName}}</div>
+          <div>Size: {{liq.liqSize }}</div>
+          <div>Buying Price: ${{liq.price}}</div>
+          <div>Selling Price: ${{liq.sellPrice }}</div>
+          <div>Percentage: {{(1 - (liq.price/liq.sellPrice))*100 }} </div>
+          <div>Purchase Date: {{liq.invoiceDate | date: 'MMM-dd-yy'}}</div>
+          <div>Quantity: {{liq.quantity }}</div>
+
+      </div>
+    </div>
+</div>
+<table class="stbs-table no-phone">
+    <thead>
+        <tr>
+            <th>InvoiceDate</th>
+            <th class="desktop-only liqNameClass">Liquor Name</th>
+            <th>Price</th>
+            <th>SellPrice</th>
+            <th class="desktop-only">InvoiceNum</th>
+            <th>Liquor Size</th>
+            <th class="desktop-only">Liquor Type</th>
+            <th class="liqNameClass">Quantity</th>
+            <th>SalesPerson</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let liq of responseData |filter:searchTerm">
+            <td>{{liq.invoiceDate | date: 'MMM-dd-yy'}}</td>
+            <td class="desktop-only liqNameClass">{{liq.liqName }}</td>
+            <td>{{liq.price}}</td>
+            <td>{{liq.sellPrice }}</td>
+            <td class="desktop-only">{{liq.invoiceNum }}</td>
+            <td>{{liq.liqSize }}</td>
+            <td class="desktop-only">{{liq.liqType }}</td>
+            <td class="liqNameClass">{{liq.quantity }}</td>
+            <td>{{liq.salesPerson }}</td>
+
+        </tr>
+    </tbody>
+</table>
+<hr>
+<div class="desktop-only" [hidden]="searchTerm === null">
+    <pre >{{responseData | filter:searchTerm |json }}</pre>
+</div>
+<br/><br/><br/>
+<style>
+
+</style>
