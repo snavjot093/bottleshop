@@ -122,3 +122,9 @@ export class Ifempty implements PipeTransform {
         };
     }
 }
+@Pipe({name: 'round'})
+export class RoundPipe {
+  transform (input:number) {
+    return Math.floor(input);
+  }
+}

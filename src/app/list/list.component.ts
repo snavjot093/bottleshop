@@ -37,41 +37,29 @@ export class ListComponent implements OnInit {
     totalEntries:any;
     filteredOptionsType:any;
   constructor( private formbuilder: FormBuilder,private router: Router, private db: AngularFirestore, private fb: FirebaseService) {
-
-    //==========================API CALLS ==========================
-    //--------- Liquor Names -------
       this.fb.localLiqNames().subscribe((resps:any)=>{
           this.liqNameOptions = resps.map((req:any) =>(req));
           //this.filteredOptions = resps;//this.myForm.controls['liqName'].valueChanges.pipe(startWith(''),map(value => this.nameFilter(value)));
-          //console.log(this.liqNameOptions);
       });
-      //--------Liquor Types  --------
       this.fb.localLiqTypes().subscribe((resps:any)=>{
           this.liqTypeOptions = resps;//.map(req =>(req));
           this.filteredOptionsType = resps;//ngForm.liqType.valueChanges.pipe(startWith(''),map((value:any) => this.typeFilter(value)));
       });
-      //-----------SalesPerson-----------
-      this.fb.localSalesMan().subscribe((data:any)=>{
-        this.salesPersonData = data });
-      //-------------------Liquor Sizes -------
-      this.fb.localLiqSizes().subscribe((data:any)=>{ this.liquorSizeData = data  });
-      //-------------------Distributer ----------
-      this.fb.localCompanies().subscribe((data:any)=>{this.companyData = data });
+      this.fb.localSalesMan().subscribe((data:any)=>{  this.salesPersonData = data });
+      this.fb.localLiqSizes().subscribe((data:any)=>{  this.liquorSizeData = data  });
+      this.fb.localCompanies().subscribe((data:any)=>{ this.companyData = data });
   }
   searchNow(searchInventory:any){
-      let invoiceNum = isNotNull(searchInventory.value.invoiceNum)?searchInventory.value.invoiceNum:'';
-      let sDate = isNotNull(searchInventory.value.startDate)?new Date(searchInventory.value.startDate).getTime():'';
-      let eDate = isNotNull(searchInventory.value.endDate)?new Date(searchInventory.value.endDate).getTime():'';
-      this.fb.queryInventoryFilter(invoiceNum, sDate, eDate).subscribe(actions => {               //ES6 syntex
-              this.responseData = actions.map(action => ({$key: action.payload.doc.id, ...action.payload.doc.data()}));
-              console.log(this.responseData);
-            //  this.responseData = this.response;//.slice();  //====Next 3 Lines to sort data by Liquor name
-              this.totalEntries = this.responseData.length; // total entries just for display purpose
-              console.log(this.totalEntries); // responseData because replace reponse on form submit.
+      let invoiceNum = isNotNull(searchInventory.value.invoiceNum) ? searchInventory.value.invoiceNum : '';
+      let sDate = isNotNull(searchInventory.value.startDate) ? new Date(searchInventory.value.startDate).getTime() : '';
+      let eDate = isNotNull(searchInventory.value.endDate) ? new Date(searchInventory.value.endDate).getTime() : '';
+
+      this.fb.formSearchByDate(sDate, eDate).subscribe(actions => {
+          this.responseData = actions.map(action => ({$key: action.payload.doc.id, ...action.payload.doc.data()}));
+          this.totalEntries = this.responseData.length;
       });
   }
-  ngOnInit() {
-  }
+  ngOnInit() { }
 }
 function isNotNull(varName:any) {
     return varName === undefined || varName === "undefined" || varName === null || varName === "null" || varName === '' ? false : true;
