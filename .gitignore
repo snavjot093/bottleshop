@@ -1,0 +1,13 @@
+node_modules/
+settings.json
+.DS_Store
+/DS_Store
+.settings/
+.classpath
+.project
+npm-debug.log
+package-lock.json
+install.js
+dist/
+*/target/
+.vscode

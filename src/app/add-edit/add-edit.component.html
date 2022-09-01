@@ -12,7 +12,7 @@
         <div class="row form-group">
             <div class="col-sm-6">
                 <label for="invoicedate">Invoice Date</label>
-                <input type=date placeholder="Choose a date"  class="form-control" id="invoicedate" formControlName="invoiceDate" required>
+                <input type="date" placeholder="Choose a date"  class="form-control" id="invoicedate" formControlName="invoiceDate" required>
             </div>
             <div class="col-sm-6">
                 <label for="invoiceNum">Invoice Num</label>
@@ -97,12 +97,12 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="btn-grouping" style="margin-bottom: 0">
-                    <button type="button" class="myBtn btn-cancel-pr" id="myBtn" (click)="cancelForm(myForm.value)">Cancel</button>
+                    <button type="button" class="myBtn btn-cancel-pr" id="myBtn" (click)="cancelForm(myForm.value)">Cancel</button>&nbsp;&nbsp;&nbsp;
                     <!--button type="submit" class="myBtn btn-pr" [disabled]="!myForm.valid">Submit</button-->
                     <button type="submit" class="myBtn btn-pr"  >Submit</button>
                 </div>
             </div>
         </div>
     </form>
-    <!--pre >{{jsonCode }}</pre-->
+    <pre >{{jsonCode|json }}</pre>
 </div>

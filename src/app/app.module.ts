@@ -19,8 +19,9 @@ import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PayrollComponent } from './payroll/payroll.component';
 import { PayslipComponent } from './payslip/payslip.component';
-import { FilterPipe, UniquePipe, LimitTo, DateAgoPipe, GroupByPipe, OrderByPipe, Ifempty  }     from './list/list.pipe';
+import { FilterPipe, UniquePipe, LimitTo, DateAgoPipe, GroupByPipe, OrderByPipe, Ifempty,RoundPipe  }     from './list/list.pipe';
 import {MatTableModule} from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatRadioModule} from '@angular/material/radio';
@@ -34,6 +35,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import {FirebaseConfig }       from './firebase.config';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModalComponent } from './modal/modal.component';
 
 
 @NgModule({
@@ -55,7 +57,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DateAgoPipe,
     GroupByPipe,
     OrderByPipe,
-    Ifempty
+    Ifempty,
+    RoundPipe,
+    ModalComponent
   ],
   imports: [
     NgbModule,
