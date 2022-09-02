@@ -43,8 +43,14 @@ form.searchBy{
         display: block;
     }
 }
+.searchTerm-row{
+    @include tablet-landscape{
+        width: 92%;
+        margin: 0 auto;
+    }
+}
 .searchTerm{
-    margin:0px 15px;
+/*    margin:0px 15px;
     width: calc(100% - 30px);
     @include tablet-landscape{
         margin-top:0px;
@@ -52,7 +58,7 @@ form.searchBy{
         margin-bottom:5px;
         margin-left:0px;
         float:right;
-    }
+    }*/
 }
 .searchBy-radio{
     display: inline-flex;

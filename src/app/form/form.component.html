@@ -22,7 +22,7 @@
             </div>
             <div class="col-sm-6"></div>
         </div>
-      
+
         <div class="row" [hidden]="byName">
             <div class="col-sm-6">
                 <form [formGroup]='reportSearchForm' (ngSubmit)="commonQueryFunction('liqName', reportSearchForm.value.liqName)" class="searchBy">
@@ -65,7 +65,7 @@
 <app-modal [deleteInfo]="deleteInfo" [hidden]="deleteKarna"></app-modal>
 <app-add-edit [keyword]="keyword" [hidden]="editKarna"></app-add-edit>
 <div style="width:100%;padding-left:15px;padding-right:15px;">
-    <div class="row" [hidden]="responseData === undefined" >
+    <div class="row searchTerm-row" [hidden]="responseData === undefined">
         <div class="col-md-3">
             <marquee BEHAVIOR="ALTERNATE" class="marquee-style">
                 <div class="flash count marquee-div" [hidden]="totalEntries === null"><span class="totalCount">{{totalEntries}}</span></div>
@@ -88,7 +88,7 @@
                 <div>Percentage: {{(1 - (liq.price/liq.sellPrice))*100|round }}%</div>
                 <div>Purchase Date: {{liq.invoiceDate | date: 'MMM-dd-yy'}}</div>
                 <div>Quantity: {{liq.quantity }}</div>
-           
+
             </div>
         </div>
     </div>
