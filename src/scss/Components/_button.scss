@@ -10,6 +10,7 @@
 
   &:active {
     background: darken($bg,12%);
+    min-width: calc(100% - 80px);
     @include media-breakpoint-up(md) {
        min-width: 80px;
        margin-left: 15px;
