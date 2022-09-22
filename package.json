@@ -24,7 +24,7 @@
     "@ng-bootstrap/ng-bootstrap": "4.2.1",
     "@types/lodash": "^4.14.178",
     "bootstrap": "^4.6.0",
-    "firebase": "^8.8.0",
+    "firebase": "^8.10.1",
     "lodash": "^4.17.21",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
