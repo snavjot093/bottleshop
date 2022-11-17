@@ -79,8 +79,8 @@
     <div class="no-computer">
         <div class="auto-grid">
             <div  *ngFor="let liq of responseData |filter:searchTerm" class="grid-col"
-            [ngStyle]="(1 - (liq.price/liq.sellPrice))*100 >= 40 ? {'background-color': '#57A635'}:{'background-color': '#58616B'}
-            && (1 - (liq.price/liq.sellPrice))*100 < 29 ? {'background-color': '#B63125'}:{'background-color': '#58616B'}">
+            [ngClass]="(1 - (liq.price/liq.sellPrice))*100 >= 40 ? 'fourtyPlus': 'regPrice'
+                && (1 - (liq.price/liq.sellPrice))*100 < 29 ? 'lessThanThirty' : 'regPrice' ">
                 <div>{{liq.liqName}}</div>
                 <div>Size: {{liq.liqSize }}</div>
                 <div>Buying Price: ${{liq.price}}</div>
@@ -109,7 +109,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let liq of responseData |filter:searchTerm"  [ngStyle]="(1 - (liq.price/liq.sellPrice))*100 >= 40 ? {'color': '#0b8203'}:{'color': '#0D1C3D'} && (1 - (liq.price/liq.sellPrice))*100 < 29.5 ? {'color': '#B63125'}:{'color': '#0D1C3D'}">
+            <tr *ngFor="let liq of responseData |filter:searchTerm" 
+ [ngClass]="(1 - (liq.price/liq.sellPrice))*100 >= 40 ? 'fourtyPlus': 'regPrice' && (1 - (liq.price/liq.sellPrice))*100 < 30 ? 'lessThanThirty' : 'regPrice' ">
                 <td>{{liq.invoiceDate | date: 'MMM-dd-yy'}}</td>
                 <td class="desktop-only liqNameClass">{{liq.liqName}}</td>
                 <td>{{liq.price}}</td>
@@ -133,7 +134,7 @@
     </table>
     <hr>
     <div class="desktop-only" [hidden]="searchTerm === null">
-        <pre >{{responseData | filter:searchTerm |json }}</pre>
+        <div class=" pre-code"><pre>{{responseData | filter:searchTerm |json }}</pre></div>   
     </div>
 </div>
 <br/><br/><br/>

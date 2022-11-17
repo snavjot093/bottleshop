@@ -228,6 +228,8 @@ formSearchByDate(sDate:any, eDate:any) {
             }
             return query ? query: item;
         });
+        console.log(this.itemsCollection)
+        console.log(this.itemsCollection.snapshotChanges())
         return this.itemsCollection.snapshotChanges();
     }
     //======================= END LIQUOR REPORT PAGE ===============================

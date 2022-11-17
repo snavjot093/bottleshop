@@ -7,36 +7,28 @@ p{
     padding: 20px;
     font-size: $font-size-blockquote;
     line-height: 1.8;
-
-
     small{
         color: $default-color;
         font-size: $font-size-small;
         text-transform: uppercase;
     }
-
     &.blockquote-primary{
         border-color: $primary-color;
         color: $primary-color;
-
         small{
             color: $primary-color;
         }
     }
-
     &.blockquote-danger{
         border-color: $danger-color;
         color: $danger-color;
-
         small{
             color: $danger-color;
         }
     }
-
     &.blockquote-white{
         border-color: $opacity-8;
         color: $white-color;
-
         small{
             color: $opacity-8;
         }
@@ -154,7 +146,6 @@ p{
 
 .section-story-overview{
     padding: 50px 0;
-
     .image-container{
         height: 335px;
         position: relative;

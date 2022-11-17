@@ -96,7 +96,7 @@ export class FormComponent implements OnInit {
     }
     @HostListener('window:scroll', ['$event']) // for window scroll events
     onScroll(event:any) {
-        console.log(event);
+        //console.log(event);
         if (window.pageYOffset > this.sticky) {
             this.header.classList.add("sticky");
         } else {
@@ -194,9 +194,13 @@ export class FormComponent implements OnInit {
                 // this.responseData = this.response.slices(); // REQUIRED FOR TABLE SORTING 
                 this.sortData(this.sortTest);
                 this.totalEntries = this.responseData.length;
-            }
-               
+            }   
         });
+        /*this.fb.localInventory().subscribe((data:any) => {
+            this.responseData = data; 
+            this.sortData(this.sortTest); // REQUIRED FOR TABLE SORTING 
+            this.totalEntries = this.responseData.length;
+        });*/
     
     };
     salesPersonCall=()=>{

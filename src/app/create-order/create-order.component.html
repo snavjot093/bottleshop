@@ -1,2 +1,83 @@
+<style>
+    table thead th{
+        padding: 3px 0 3px 3px;
+        background: #e9fafe;
+        font-size: 12px;
+    }
+    table tbody td {
+        padding-left: 12px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+</style>
 
-<p>create-order works!</p>
+<div  class="" style="margin-top:60px;">
+    <div class="row">
+        <div class="col-md-6">
+            <h3 class="h3" (click)='loadList()' class="createOrder"> Create Order</h3>
+        </div>
+        <div class="col-md-6">
+            <div class="orderTable" [hidden]="selected.length === 0" (click)="isOpened = !isOpened"> Show order table</div>
+        </div>
+    </div>
+    <table class="table-bordered table-striped" style="margin: auto;" [hidden]="showTable" *ngIf="isOpened">
+        <thead>
+            <th >#</th>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Quantity</th>
+            <th>Min-Price</th>
+            <th>Max-Price</th>
+            <th>Selling-Price</th>
+        </thead>
+        <tr *ngFor="let obj of selected; let i= index">
+            <td>{{i+1}}</td>
+            <td>{{obj.name}}</td>
+            <td>{{obj.size}}</td>
+            <td>1 Case</td>
+            <td><span *ngFor="let p of masterPrice; let i =index;"><span *ngIf="obj.name == p.name && obj.size ==p.size">{{p.min}}</span></span></td>
+            <td><span *ngFor="let p of masterPrice; let i =index;"><span *ngIf="obj.name == p.name && obj.size ==p.size">{{p.max}}</span></span></td>
+            <td><span *ngFor="let p of masterPrice; let i =index;"><span *ngIf="obj.name == p.name && obj.size ==p.size">{{p.sPrice}}</span></span></td>
+        </tr>
+    </table><br/><br/>
+    <!--div ngDraggable>
+        <div class="alert alert-primary" [hidden]="selected.length === 0" style="position:fixed;top:100px;width:max-content;">
+            <div class="alert-info caps" *ngFor="let obj of selected; let i= index" style="padding:5px 10px;font-size:12px;">{{i+1}}.  {{obj.name}} - {{obj.size}}</div>
+        </div>
+    </div-->
+    
+    <div class="row" style="width:92%;margin:auto;">
+        <div class="col-md-6">
+            <div class="flash count" [hidden]="totalEntries === null">
+                <span class="totalCount">{{totalEntries}}</span>
+            </div>
+            <div class="my-checkbox">
+                <input class=""/>
+            </div>
+        </div>
+        <div class="col-md-6" [hidden]="liqOptions === null">
+            <input type="text" class="form-control searchTerm" [(ngModel)]="searchTerm" placeholder="Search text goes here"/>
+        </div>
+    </div>
+    <div class="scrollable" style="border:none;">
+        <table class="stbs-table" >
+            <tbody>
+                <tr *ngFor="let x of liqOptions|filter:searchTerm;">
+                    <td style="width:200px;text-align:left"><span>{{ x }}</span></td>
+                    <td><mat-checkbox color="red"(change)="checkboxed(x+' - 50ml', x,'50 ml')">&nbsp;50ml</mat-checkbox></td>
+                    <td><mat-checkbox (change)="checkboxed(x+' - 100ml', x,'100 ml')">&nbsp;100ml</mat-checkbox></td>
+                    <td><mat-checkbox (change)="checkboxed(x+' - 200ml', x,'200 ml')">&nbsp;200ml</mat-checkbox></td>
+                    <td><mat-checkbox (change)="checkboxed(x+' - 375ml', x,'375 ml')">&nbsp;375ml</mat-checkbox></td>
+                    <td><mat-checkbox (change)="checkboxed(x+' - 750ml', x,'750 ml')">&nbsp;750ml</mat-checkbox></td>
+                    <td><mat-checkbox (change)="checkboxed(x+' - 1Lt', x,'1 Liter')">&nbsp;1Lt</mat-checkbox></td>
+                    <td><mat-checkbox (change)="checkboxed(x+' - 1.5Lt',x ,'1.5 Liter')">&nbsp;1.5Lt</mat-checkbox></td>
+                    <td><mat-checkbox (change)="checkboxed(x+' - 1.75Lt',x ,'1.75 Liter')">&nbsp;1.75Lt</mat-checkbox></td>
+                    <td><span *ngFor="let p of masterPrice; let i =index; let isOdd=odd;let isEven=even"  [class.odd]="isOdd"[class.even]="isEven" >
+                            <span *ngIf="x == p.name" style="text-transform:lowercase;">{{p.size}} - {{p.min}}/{{p.max}}<br/></span>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

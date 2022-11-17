@@ -25,6 +25,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatRadioModule} from '@angular/material/radio';
+import { MatSliderModule } from '@angular/material/slider';
+
 
 
 
@@ -36,7 +38,7 @@ import { environment } from '../environments/environment';
 import {FirebaseConfig }       from './firebase.config';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalComponent } from './modal/modal.component';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,8 @@ import { ModalComponent } from './modal/modal.component';
     AngularFireAuthModule,
     AngularFirestoreModule,
     BrowserAnimationsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatCheckboxModule
   ],
   exports: [FormComponent, AddEditComponent, NavbarComponent],
   providers: [FirebaseService,AuthGuardService],

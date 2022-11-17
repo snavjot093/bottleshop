@@ -7,11 +7,15 @@ form{
 form.searchBy{
     input[type=text]{
       width: 80%;
+      border-radius: 0;
     }
     input[type=submit].sb-liqName{
+        font-weight: 300; 
+        padding-left: 2px;
         width:20%;
         color:$black-1 !important;
         border-left:none;
+        border-radius: 0;
         &:hover{
             background: $pr-theme-color!important;
             color:$white !important;
@@ -151,16 +155,26 @@ form.searchBy{
     .grid-col {
         padding:1.4rem 0px;
         font-size: 1rem;
-        background: #34495E;/*#eb4d4b;*/
+        background: #34495E;/* #eb4d4b;*/
         color: #ffffff;
         div{
             text-align: left;
             font-size: 1rem;
-            text-indent: 25px;
+            padding-left: 15px;
             &:first-child{
                 font-size: 1.5rem;
+                line-height: 20px;
             }
         }
+    }
+    .fourtyPlus{
+        background-color: #57A635;
+    }
+    .lessThanThirty{
+        background-color: #B63125;
+    }
+    .regPrice{
+        background-color: $black-3;  //lighten($pr-theme-color,60%);  
     }
 }
 table.stbs-table{
@@ -175,13 +189,21 @@ table.stbs-table{
         }
     }
     tbody{
-         tr{
+        tr{
             td.liqNameClass{
                 width: 250px;
                 max-width: auto;
                 text-align: left;
                 text-indent: 20px;
             }
-         }
+        }.fourtyPlus{
+            background-color:lighten(#57A635, 50%);
+        }
+        .lessThanThirty{
+            background-color: lighten(#B63125, 50%);
+        }
+        .regPrice{
+            background-color: #FFF;  
+        }
     }
 }

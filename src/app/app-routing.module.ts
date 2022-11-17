@@ -17,7 +17,7 @@ import { BeerComponent } from './beer/beer.component';
 const routes: Routes = [
   {path: '', component: LandingComponent},
   {path: 'list', component: ListComponent},
-  {path: 'form', component: FormComponent},// canActivate: [AuthGuard]},
+  {path: 'search', component: FormComponent},// canActivate: [AuthGuard]},
   {path: 'payroll', component: PayrollComponent},//, canActivate: [AuthGuard]},
   {path: 'payslip', component: PayslipComponent},
   {path: 'login', component: LoginComponent},

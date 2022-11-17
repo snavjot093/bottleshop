@@ -51,6 +51,9 @@ body{
         //width: 55%;
         padding: 20px;
         margin: 60px auto 20px;
+        @include media-breakpoint-up(xs) {
+            width: 99%;
+        }
     }
     .base-fontSize{
         font-size:$font-size-normal;
@@ -580,3 +583,10 @@ opacity: 0.58;
     }
 
 }
+.pre-code{
+    background: lighten($pr-theme-color, 55%);
+    height: 200px;
+    overflow: overlay;
+    max-height: 250px;
+    display: inline-block;
+  }

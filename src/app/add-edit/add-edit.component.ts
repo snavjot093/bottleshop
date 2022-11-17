@@ -64,10 +64,11 @@ export class AddEditComponent implements OnInit {
         'key':          ['', Validators.compose([Validators.minLength(1), Validators.maxLength(100)])],
     });
     ngOnChanges(){
+        console.log(this.keyword);
         this.inventroyForm = false;
         this.invoiceRecordForm = true;
         this.myForm.patchValue({
-            invoiceDate:    new Date(this.keyword.invoiceDate),// - 43200000),
+            invoiceDate:    new Date(this.keyword.invoiceDate),//new Date(this.keyword.invoiceDate- 43200000),
             invoiceNum:     this.keyword.invoiceNum,
             liqName:        this.keyword.liqName,
             liqType:    this.keyword.liqType,
@@ -105,7 +106,7 @@ export class AddEditComponent implements OnInit {
 
 
     formSelection(value:any){
-        console.log(value)
+        //console.log(value)
         if(value ==='inventroy'){
             this.inventroyForm = false;
             this.invoiceRecordForm = true;
@@ -155,7 +156,7 @@ export class AddEditComponent implements OnInit {
                 this.fb.addLiquorItem( inventory, INVENTORY_DB).then(function (docRef) {
                  console.log('Document written with ID: ', docRef);
                 //    __this.router.navigateByUrl('/form');
-                __this.jsonCode = docRef;
+                //__this.jsonCode = docRef;
                 }).catch(function (error) {
                     console.error('Error adding document: ', error);
                 });
@@ -163,7 +164,7 @@ export class AddEditComponent implements OnInit {
             if(this.inventroyForm === true && this.invoiceRecordForm === false && this.myForm.valid){
                 this.fb.addLiquorItem( invoiceRecord, INVRECORD_DB).then(function (docRef) {
                         console.log('Document written with ID: ', docRef);
-                        __this.jsonCode = docRef;
+                       // __this.jsonCode = docRef;
                 //        __this.router.navigateByUrl('/form');
                 }).catch(function (error) {
                     console.error('Error adding document: ', error);
@@ -171,7 +172,7 @@ export class AddEditComponent implements OnInit {
             }
             if(this.inventroyForm === false && this.invoiceRecordForm === false){
                 this.fb.addLiquorItem( inventory, INVENTORY_DB).then(function (docRef) {
-                    __this.jsonCode = docRef;
+                   // __this.jsonCode = docRef;
                 }).catch(function (error) {
                     console.error('Error adding document: ', error);
                 });

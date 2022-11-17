@@ -58,6 +58,7 @@
   text-decoration: none;
   text-shadow: none;
   border: none;
+  height: 40px;
   @include allMargin(1%, 2%, 0%, 2%);
   @include media-breakpoint-up(xs) {
     min-width: 96%;
