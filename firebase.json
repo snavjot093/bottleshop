@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/bottleshop",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",

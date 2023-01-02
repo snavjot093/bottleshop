@@ -1,1 +1,176 @@
-<p>payslip works!</p>
+<app-navbar></app-navbar>
+<div  class="form-container payslip-form">
+    <div style="text-align:center">
+        <h3>Payslips</h3>
+    </div><br/>
+    <form [formGroup]='payslipForm' (ngSubmit)='payslipFunc(payslipForm.value)' novalidate>
+        <div class="row">
+            <div class="col-sm-3 form-group">
+                <label for="name">Employee's Name</label>
+                <input type="text" id="name" class="form-control" name="name" formControlName='name' required />
+ 
+            </div>
+            <div class="col-sm-3 form-group">
+                <label for="social">Last 4 of Social</label>
+                <input type="text" id="social" class="form-control" name="social" formControlName='social' maxLength="4" (keyup)="socialCheck(payslipForm.value.social)"required trim/>
+            </div>
+            <div class="col-sm-3 form-group">
+                <label for="sDate">Start Date</label>
+                <input type="date" placeholder="Choose a date"  class="form-control" id="startDate" formControlName="sDate"(ngModelChange)="getWeekNumber(payslipForm.value.sDate)" />
+            </div>
+            <div class="col-sm-3">
+                <button type="submit" style="margin-top: 28px;" class="myBtn btn-pr" [disabled]="">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+ 
+<div class="payslip-container">
+    <div class="row">
+        <div class="col-md-4">
+            <!--div class="payslip-names">Santa Teresa Bottleshop & Groceries</div>
+            <div class="payslip-names">7068 Santa Teresa Blvd</div>
+            <div class="payslip-names">San Jose, CA 95139</div>
+            <div>License: 21-556987</div-->
+ 
+            <div class="payslip-names">Country Side Liquor & Groceries</div>
+            <div class="payslip-names">1711 McKee Road</div>
+            <div class="payslip-names">San Jose, CA 95116</div>
+            <div>License: 20-545500</div>
+ 
+ 
+            <!--div class="payslip-names">Kwikee Mart</div>
+            <div class="payslip-names">2044 McKee Rd</div>
+            <div class="payslip-names">San Jose, CA 95116</div>
+            <div>License: 20-545500</div-->
+        </div>
+        <div class="col-md-8" style="text-align: right;">
+            <img src="../../assets/stbs4.png" class="logo"/>
+            <div class="stbs1">Country Side</div>
+            <div class="stbs2">Liquor & Groceries</div>
+            <!--div class="outside">
+                <div class="inside">
+                    <div class="kwikee">Kwikee-Mart</div>
+                    AMANDeep SIngh SSN-3279
+                </div>
+            </div-->
+ 
+ 
+ 
+ 
+        </div>
+    </div>
+    <hr/>
+    <h6>Pay Period :&nbsp; {{startDate | date: 'MM/dd/yyyy' }} &nbsp; - &nbsp; {{endDate | date: 'MM/dd/yyyy'}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+    <h6>Employee Name: <b style="text-transform: uppercase;">{{employeeName}}</b></h6>
+    <h6>Social Security Number : XXX-XX-{{lastFour}}</h6>
+    <br/>
+    <table class="table-bordered" style="width:98%;">
+        <tr>
+            <td></td>
+            <td colspan="4" style="">Earnings</td>
+            <td colspan="2">hours</td>
+            <td>rate</td>
+            <td colspan="4">this period</td>
+            <td colspan="5">year to date</td>
+ 
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="4" style="">Regular hours @</td>
+            <td colspan="2">{{hours}}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>{{rate}}</td>
+            <td colspan="4">{{thisPeriod | currency}}</td>
+            <td colspan="5">{{yearToDate | currency}}</td>
+ 
+ 
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="4">Overtime hours @</td>
+            <td colspan="2" ><span [hidden]="startDate === undefined">0&nbsp;</span></td>
+            <td></td>
+            <td colspan="4"></td>
+            <td colspan="5"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="4"></td>
+            <td colspan="2">&nbsp;</td>
+            <td></td>
+            <td colspan="4"></td>
+            <td colspan="5"></td>
+ 
+        </tr>
+        <tr>
+ 
+            <td colspan="8"><b>TOTAL EARNING</b></td>
+            <td colspan="4">{{thisPeriod | currency}}&nbsp;</td>
+            <td colspan="5">{{yearToDate | currency}}</td>
+ 
+        </tr>
+        <tr>
+            <td colspan="5" style="text-align:left;">FED. Withholding tax </td>
+            <td colspan="2"></td>
+            <td colspan="4"></td>
+            <td>{{fedTax | currency}}</td>
+            <td colspan="4">{{fedTaxToYear | currency}}</td>
+        </tr>
+        <tr>
+            <td colspan="5" style="text-align:left;">Social Security</td>
+            <td colspan="2"></td>
+            <td colspan="4"></td>
+            <td char="2">{{socialS | currency}}</td>
+            <td colspan="5">{{socialSToYear | currency}}</td>
+        </tr>
+        <tr>
+            <td colspan="5" style="text-align:left;">Medicare Tax Withholding</td>
+            <td colspan="2"></td>
+            <td colspan="4"></td>
+            <td>{{medicare| currency}}</td>
+            <td colspan="4">{{medicareToYear| currency}}</td>
+        </tr>
+ 
+        <tr>
+            <td colspan="5" style="text-align:left;">State Withholding tax </td>
+            <td colspan="2"></td>
+            <td colspan="4"></td>
+            <td>{{stateTax | currency}}</td>
+            <td colspan="4">{{stateTaxToYear | currency}}</td>
+        </tr>
+        <tr>
+            <td colspan="5" style="text-align:left;">State Others</td>
+            <td colspan="2"></td>
+            <td colspan="4"></td>
+            <td>{{sOthers | currency}}</td>
+            <td colspan="4">{{sOthersToYear | currency}}</td>
+        </tr>
+        <tr>
+            <td colspan="8" style="text-align:left;">TOTAL DEDUCTION </td>
+            <td colspan="4">{{totalDeduction | currency}}</td>
+            <td colspan="5">{{totalDeductionToYear | currency}}</td>
+        </tr>
+        <tr>
+            <td colspan="8" style="text-align:left;">NET PAY </td>
+            <td colspan="4">{{netPay | currency}}</td>
+            <td colspan="5">{{netPayToYear | currency}}</td>
+        </tr>
+    </table><br/>
+</div><br/><br/><br/><br/><br/><br/>
+<style>
+table.table-bordered tr td{
+    border: 2px solid ;
+    border-color: gray !important;
+    padding:8px 10px;
+ 
+}
+h4 {
+    margin: 1px 0;
+}
+hr {
+    margin: 15px 0;
+}
+h5{
+    margin: 5px 0;
+}
+</style>

@@ -54,7 +54,7 @@ form.searchBy{
     }
 }
 .searchTerm{
-/*    margin:0px 15px;
+   /* margin:0px 15px;
     width: calc(100% - 30px);
     @include tablet-landscape{
         margin-top:0px;
@@ -63,6 +63,12 @@ form.searchBy{
         margin-left:0px;
         float:right;
     }*/
+}
+.sticky{
+    position: fixed;
+    top: 55px;
+    right: 15px;
+    width: 92%;
 }
 .searchBy-radio{
     display: inline-flex;
@@ -153,7 +159,7 @@ form.searchBy{
     grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
     grid-gap: 1rem;
     .grid-col {
-        padding:1.4rem 0px;
+        padding:1rem 0px;
         font-size: 1rem;
         background: #34495E;/* #eb4d4b;*/
         color: #ffffff;
@@ -162,8 +168,8 @@ form.searchBy{
             font-size: 1rem;
             padding-left: 15px;
             &:first-child{
-                font-size: 1.5rem;
-                line-height: 20px;
+                font-size: 1.25rem;
+                line-height: 24px;
             }
         }
     }
@@ -194,7 +200,7 @@ table.stbs-table{
                 width: 250px;
                 max-width: auto;
                 text-align: left;
-                text-indent: 20px;
+                padding-left: 20px;
             }
         }.fourtyPlus{
             background-color:lighten(#57A635, 50%);

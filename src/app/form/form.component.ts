@@ -59,7 +59,7 @@ export class FormComponent implements OnInit {
     deleteInfo:any="";
     constructor(formbuilder: FormBuilder, private router: Router, private db: AngularFirestore, private fb: FirebaseService) {
    
-        this.sortTest = {active:'invoiceDate', direction:'asc'};
+        this.sortTest = {active:'invoiceDate', direction:'desc'};
         //=================JUST ADDED TO EDIT THE INVOICE ENTRIES====================
         this.invoiceForm = formbuilder.group({
             'invoiceDate': [null, Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(50)])],
@@ -110,10 +110,11 @@ export class FormComponent implements OnInit {
         let eDate = isNotNull(searchInventory.value.endDate) ? new Date(searchInventory.value.endDate).getTime() : '';
         this.fb.formSearchByDate(sDate, eDate).subscribe(actions => {
             this.response = actions.map(action => ({$key: action.payload.doc.id, ...action.payload.doc.data()}));
-            this.sortData(this.sortTest);
+            
             this.totalEntries = this.responseData.length;
+            this.sortData(this.sortTest);
         });
-       /*this.fb.localInventory().subscribe((data:any) => {
+       /*this.fb.localInventory().subscribe((data:any) => { //FOR TESTING SO WE WONT MAKE API CALLS
             this.responseData = data; 
             this.sortData(this.sortTest); // REQUIRED FOR TABLE SORTING 
             this.totalEntries = this.responseData.length;
@@ -181,22 +182,27 @@ export class FormComponent implements OnInit {
         this.liqSizeForRadio.length>1?this.liqSizeForRadio.push('all'): this.liqSizeForRadio;
         console.log(this.liqSizeForRadio);
         this.totalEntries = this.searchedResponse.length;
+        this.sortData(this.sortTest);
     }
     commonQueryFunction=(name:any, value:any)=>{
         this.searchedResponse=[];
-        this.fb.commonQuery(name, value).subscribe(actions => {
-            console.log(this.response);
-            if(name === 'liqName'){
-                this.searchedResponse = actions.map((action:any) => ({$key: action.payload.doc.id, ...action.payload.doc.data()}));
-                this.searchLiquorReport(this.searchedResponse);
-            }else{
-                this.response = actions.map(action => ({$key: action.payload.doc.id, ...action.payload.doc.data()}));
-                // this.responseData = this.response.slices(); // REQUIRED FOR TABLE SORTING 
-                this.sortData(this.sortTest);
-                this.totalEntries = this.responseData.length;
-            }   
-        });
-        /*this.fb.localInventory().subscribe((data:any) => {
+        if(value !=='' && value !== null){
+            this.fb.commonQuery(name, value).subscribe(actions => {
+                console.log(this.response);
+                if(name === 'liqName'){
+                    this.searchedResponse = actions.map((action:any) => ({$key: action.payload.doc.id, ...action.payload.doc.data()}));
+                    this.searchLiquorReport(this.searchedResponse);
+                }else{
+                    this.response = actions.map(action => ({$key: action.payload.doc.id, ...action.payload.doc.data()}));
+                    // this.responseData = this.response.slices(); // REQUIRED FOR TABLE SORTING 
+                    
+                    this.totalEntries = this.responseData.length;
+                    this.sortData(this.sortTest);
+                }   
+            });
+        }
+        
+       /* this.fb.localInventory().subscribe((data:any) => {
             this.responseData = data; 
             this.sortData(this.sortTest); // REQUIRED FOR TABLE SORTING 
             this.totalEntries = this.responseData.length;
@@ -323,8 +329,7 @@ export class FormComponent implements OnInit {
             return;
         }  
         this.responseData = data.sort((a:any, b:any) => {
-           
-            const isAsc = sort.direction === 'desc';
+            const isAsc = sort.direction === 'asc';
             switch (sort.active) {
                 case 'invoiceDate': return compare(a.invoiceDate, b.invoiceDate, isAsc);
                 case 'invoiceNum': return compare(a.invoiceNum, b.invoiceNum, isAsc);
