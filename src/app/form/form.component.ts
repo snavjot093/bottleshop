@@ -49,6 +49,8 @@ export class FormComponent implements OnInit {
     liqSizeForRadio:any;
     searchedResponse: any[] = [];
     math= Math;
+    invoiceD:any;
+    invoiceData:any;
 
     filteredOptionsSearch: Observable<string[]>|undefined;
     filteredOptionReport: Observable<string[]>|undefined;
@@ -194,9 +196,9 @@ export class FormComponent implements OnInit {
                     this.searchLiquorReport(this.searchedResponse);
                 }else{
                     this.response = actions.map(action => ({$key: action.payload.doc.id, ...action.payload.doc.data()}));
-                    // this.responseData = this.response.slices(); // REQUIRED FOR TABLE SORTING 
+                     //this.responseData = this.response.slices(); // REQUIRED FOR TABLE SORTING 
                     
-                    this.totalEntries = this.responseData.length;
+                    this.totalEntries = this.response.length;
                     this.sortData(this.sortTest);
                 }   
             });
@@ -233,7 +235,22 @@ export class FormComponent implements OnInit {
             console.log('Invoice removing document: ', error);
         });
     }
-
+    showPaymentHistory(){
+        let date = 1641024000000;//new Date().getTime() - 1000*60*60*24*120 ;
+        console.log(new Date(date));
+        this.fb.queryInvoiceHistory(date).subscribe((actions:any) => {               //ES6 syntex
+            //const __this = this;
+            if(this.invoiceD !==undefined){ }
+            else{
+                this.invoiceD= actions.map((action:any) => ({$key: action.payload.doc.id, ...action.payload.doc.data()}));
+                this.invoiceData = this.invoiceD.slice();  //====Next 3 Lines to sort data by Liquor name
+                //__this.sortData(this.test);
+                this.totalEntries = this.invoiceData.length;
+               //this.sortData(this.sortTest);
+                console.log(this.invoiceData);
+            }
+        });
+    }
 /*
   //===================== DELETE ITEM FROM THE INVENTORY=======
       
