@@ -112,11 +112,11 @@ export class FormComponent implements OnInit {
         let eDate = isNotNull(searchInventory.value.endDate) ? new Date(searchInventory.value.endDate).getTime() : '';
         this.fb.formSearchByDate(sDate, eDate).subscribe(actions => {
             this.response = actions.map(action => ({$key: action.payload.doc.id, ...action.payload.doc.data()}));
-            
-            this.totalEntries = this.responseData.length;
+            console.log(this.response);
+            this.totalEntries = this.response.length;
             this.sortData(this.sortTest);
         });
-       /*this.fb.localInventory().subscribe((data:any) => { //FOR TESTING SO WE WONT MAKE API CALLS
+      /* this.fb.localInventory().subscribe((data:any) => { //FOR TESTING SO WE WONT MAKE API CALLS
             this.responseData = data; 
             this.sortData(this.sortTest); // REQUIRED FOR TABLE SORTING 
             this.totalEntries = this.responseData.length;
@@ -230,7 +230,7 @@ export class FormComponent implements OnInit {
         const xthis = this;
         this.fb.deleteLiquorItem(item, INVENTORY_DB).then(function () {
             console.log('Invoice successfully deleted!');
-            console.log(xthis.responseData) ;
+            //console.log(xthis.responseData) ;
         }).catch(function (error:any) {
             console.log('Invoice removing document: ', error);
         });
