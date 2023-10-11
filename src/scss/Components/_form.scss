@@ -72,11 +72,12 @@ form.searchBy{
 }
 .searchBy-radio{
     display: inline-flex;
-    margin-bottom: 20px;
+    margin: 0px 20px 20px 0px;
     @include tablet-landscape{
-        margin-bottom: 0px;
+        margin: 0px;
     }
 }
+
 .no-phone{
     display: none;
     @include tablet-landscape{

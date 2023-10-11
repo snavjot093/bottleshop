@@ -173,6 +173,7 @@ export class FormComponent implements OnInit {
                     }
                 });
             }
+            this.sortData(this.sortTest);
         }
      //===================SEARCH LIQUOR USING THE LIQUOR NAME QUERY==================
      searchLiquorReport(form:any) {
@@ -190,14 +191,12 @@ export class FormComponent implements OnInit {
         this.searchedResponse=[];
         if(value !=='' && value !== null){
             this.fb.commonQuery(name, value).subscribe(actions => {
-                console.log(this.response);
                 if(name === 'liqName'){
                     this.searchedResponse = actions.map((action:any) => ({$key: action.payload.doc.id, ...action.payload.doc.data()}));
                     this.searchLiquorReport(this.searchedResponse);
                 }else{
                     this.response = actions.map(action => ({$key: action.payload.doc.id, ...action.payload.doc.data()}));
                      //this.responseData = this.response.slices(); // REQUIRED FOR TABLE SORTING 
-                    
                     this.totalEntries = this.response.length;
                     this.sortData(this.sortTest);
                 }   
@@ -226,11 +225,9 @@ export class FormComponent implements OnInit {
     }
     deleteEntry=(element:any ,item:any, content:any)=> {
         this.deleteKarna = false;
-       // this.deleteInfo = 
         const xthis = this;
         this.fb.deleteLiquorItem(item, INVENTORY_DB).then(function () {
             console.log('Invoice successfully deleted!');
-            //console.log(xthis.responseData) ;
         }).catch(function (error:any) {
             console.log('Invoice removing document: ', error);
         });
@@ -251,96 +248,15 @@ export class FormComponent implements OnInit {
             }
         });
     }
-/*
-  //===================== DELETE ITEM FROM THE INVENTORY=======
-      
-      cancelForm(){
-          location.reload();
-      };
-      filterInvoiceNum(originalArray:any ,prop:any){
-          let newArray = [];
-          let invoiceNumObj:any  = {};
-          for(var i in originalArray) {
-              invoiceNumObj[originalArray[i][prop]] = originalArray[i];
-          }
-          for(i in invoiceNumObj) {
-              newArray.push(invoiceNumObj[i]);
-          }
-          this.response= newArray
-          this.responseData = this.response.slice(); //keeping this.response updated because of the sortData function.
-          this.totalEntries = this.responseData.length; // total entries just for display purpose
-      };
-      onEditSubmit(form:any) {
-          //console.log(form)
-          const __this = this;
-          this.formHide = true;
-          if(form.invoiceDate !== undefined && form.invoiceDate !== null && form.invoiceDate !== ''){
-              form.invoiceDate = form.invoiceDate.getTime();
-          }
-          if(form.dueDate !== undefined && form.dueDate !== null && form.dueDate !== ''){
-              form.dueDate=form.dueDate.getTime();
-          }
-          if(form.paymentDate !== undefined && form.paymentDate !== null && form.paymentDate !== ''){
-              form.paymentDate = form.paymentDate.getTime();
-          }
-          //console.log(form);
-          if(this.paymentTrans === false){
-              delete form.liqName;
-              delete form.liqSize;
-              delete form.liqType;
-              delete form.price;
-              delete form.quantity;
-              delete form.salesPerson;
-              delete form.sellPrice;
-              console.log(form);
-              this.fb.editLiquorItem(form.key , form, INVOICE_RECORD_DB).then(function(docRef:any){
-                  console.log('Edited invoice entry has been modified written with ID: ', docRef);
-                  __this.router.navigateByUrl('/form');
-              }).catch(function (error:any) {
-                  console.log('Error adding document: ', error);
-              });
-          }
-          else if(this.otherTrans === false){
-              delete form.amount;
-                  delete form.company;
-                  delete form.dueDate;
-                  delete form.paidWith;
-                  delete form.paymentDate;
-
-              console.log(form);
-              this.fb.editLiquorItem(form.key , form, INVENTORY_DB).then(function(docRef:any){
-              //    __this.loadInvetList();
-                  console.log('Edited invoice entry has been modified written with ID: ', docRef);
-                  //__this.router.navigateByUrl('/list'); // not needed any more in this page.
-              }).catch(function (error:any) {
-                  console.log('Error adding document: ', error);
-              });
-          }
-      };
-      showPaymentHistory(){
-          let date = new Date().getTime() - 1000*60*60*24*120 ;
-          this.fb.queryInvoiceHistory(date).subscribe((actions:any) => {               //ES6 syntex
-              const __this = this;
-              if(this.response !==undefined){ }
-              else{
-                  this.response= actions.map((action:any) => ({$key: action.payload.doc.id, ...action.payload.doc.data()}));
-                  this.responseData = this.response.slice();  //====Next 3 Lines to sort data by Liquor name
-                  //__this.sortData(this.test);
-                  this.totalEntries = this.responseData.length;
-                  console.log(this.responseData);
-              }
-          });
-      }
-
-  
-*/
-
+    cancelForm(){
+        location.reload();
+    };
     
 
   //========================SORT FUNCTION for TABLE SORTING=======================
     sortData(sort: Sort): void  {
         let data;
-        data = this.response === undefined? this.responseData.slice():this.response.slice();
+        data = this.response === undefined? (this.responseData.length === 0?this.searchedResponse.slice():this.responseData.slice()):this.response.slice();
         if (!sort.active || sort.direction === '') {
             this.responseData = data;
             return;
