@@ -37,17 +37,17 @@
         </div>
         <div class="row" [hidden]="inventroyForm">
             <div class="col-sm-6" [hidden]="inventroyForm">
-                <label for="liqSize">Liquor Size</label>
-                <input type="text"  class="form-control" id="liqSize" matInput formControlName="liqSize" [matAutocomplete]="auto2" required >
-                <mat-autocomplete #auto2="matAutocomplete">
-                    <mat-option *ngFor="let size of liquorSizeData | async" [value]="size">{{size}}</mat-option>
-                </mat-autocomplete>
-            </div>
-            <div class="col-sm-6" [hidden]="inventroyForm">
                 <label for="salesPerson">Sales Person</label>
                 <input type="text"  class="form-control" id="salesPerson" matInput formControlName="salesPerson" [matAutocomplete]="auto3" required >
                 <mat-autocomplete #auto3="matAutocomplete">
                     <mat-option *ngFor="let sname of salesPersonData | async" [value]="sname">{{sname}}</mat-option>
+                </mat-autocomplete>
+            </div>
+            <div class="col-sm-6" [hidden]="inventroyForm">
+                <label for="liqSize">Liquor Size</label>
+                <input type="text"  class="form-control" id="liqSize" matInput formControlName="liqSize" [matAutocomplete]="auto2" required >
+                <mat-autocomplete #auto2="matAutocomplete">
+                    <mat-option *ngFor="let size of liquorSizeData | async" [value]="size">{{size}}</mat-option>
                 </mat-autocomplete>
             </div>
         </div>
